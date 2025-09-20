@@ -27,9 +27,10 @@
             line-height: 1.6;
             color: #333;
             background-color: #f5f5f5;
+            scroll-behavior: smooth; /* 新增：平滑滚动基础配置 */
         }
 
-        /* 导航栏样式 */
+        /* 导航栏样式 - 新增导航高亮核心样式 */
         nav {
             background-color: #333;
             color: white;
@@ -76,6 +77,8 @@
             padding: 5px 0;
         }
 
+        /* 新增：当前导航项高亮样式 */
+        .nav-links a.active,
         .nav-links a:hover {
             color: #92db95;
         }
@@ -91,6 +94,8 @@
             transition: width 0.3s;
         }
 
+        /* 新增：当前导航项下划线满宽显示 */
+        .nav-links a.active:after,
         .nav-links a:hover:after {
             width: 100%;
         }
@@ -101,7 +106,11 @@
             font-size: 1.5rem;
         }
 
-        /* 英雄区域样式 */
+        /* 英雄区域样式 - 新增锚点偏移适配 */
+        #home {
+            scroll-margin-top: 70px; /* 适配导航栏高度，避免内容被遮挡 */
+        }
+
         .hero {
             height: 90vh;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('b3a5f2616624fa00fd65d52a299512a0.jpg') center/cover no-repeat;
@@ -148,10 +157,15 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* 通用区域样式 */
+        /* 通用区域样式 - 新增各区域锚点偏移适配 */
         .section {
             padding: 5rem 0;
             text-align: center;
+        }
+
+        /* 新增：各区域锚点偏移，避免导航栏遮挡 */
+        #about, #projects, #contact {
+            scroll-margin-top: 70px;
         }
 
         .section h2 {
@@ -416,11 +430,16 @@
             .about-images-grid {
                 grid-template-columns: 1fr;
             }
+
+            /* 响应式下锚点偏移适配 */
+            #home, #about, #projects, #contact {
+                scroll-margin-top: 60px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+    <!-- 导航栏 - 为导航项添加nav-link类，用于JS定位 -->
     <nav>
         <div class="nav-container container">
             <div class="logo">
@@ -428,10 +447,10 @@
                 重庆市第一二二中学校
             </div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#about">关于学校</a></li>
-                <li><a href="#projects">学校服务</a></li>
-                <li><a href="#contact">联系我们</a></li>
+                <li><a href="#home" class="nav-link active">首页</a></li>
+                <li><a href="#about" class="nav-link">关于学校</a></li>
+                <li><a href="#projects" class="nav-link">学校服务</a></li>
+                <li><a href="#contact" class="nav-link">联系我们</a></li>
             </ul>
             <div class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -593,20 +612,25 @@
             navLinks.classList.toggle('active');
         });
 
-        // 平滑滚动
+        // 平滑滚动（保留原有逻辑，优化锚点定位）
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                if (targetId === '#') {
+                    // 返回顶部特殊处理
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    return;
+                }
                 
                 const targetElement = document.querySelector(targetId);
-                const navHeight = document.querySelector('nav').offsetHeight;
-                
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - navHeight, 
+                        top: targetElement.offsetTop, 
                         behavior: 'smooth'
                     });
 
@@ -627,6 +651,9 @@
             } else {
                 backToTopBtn.classList.remove('show');
             }
+
+            // 新增：滚动时更新导航高亮状态
+            updateActiveNav();
         });
 
         backToTopBtn.addEventListener('click', (e) => {
@@ -637,7 +664,32 @@
             });
         });
 
-        // GitHub MCP 服务器代码
+        // 新增：更新导航高亮状态的核心函数
+        function updateActiveNav() {
+            const scrollPosition = window.scrollY + 80; // 偏移量，提前触发高亮
+            const navLinkElements = document.querySelectorAll('.nav-link');
+            const sectionIds = ['#home', '#about', '#projects', '#contact'];
+
+            // 遍历所有区域，判断当前滚动位置所在区域
+            sectionIds.forEach((sectionId, index) => {
+                const section = document.querySelector(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    // 若当前滚动位置在该区域内，高亮对应导航
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        navLinkElements.forEach(link => link.classList.remove('active'));
+                        navLinkElements[index].classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // 初始化时触发一次，确保首页导航默认高亮
+        updateActiveNav();
+
+        // GitHub MCP 服务器代码（保留原有代码，未修改）
         // 这是一个模拟的MCP服务器实现示例
         class GitHubMCPServer {
             constructor() {
