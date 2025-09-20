@@ -9,6 +9,11 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 新增HTTP/2相关配置：预加载关键资源 -->
+    <link rel="preload" href="9a673b309ec94b75de90486a2b132831.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="b3a5f2616624fa00fd65d52a299512a0.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <style>
         /* 公共容器样式 */
         .container {
@@ -164,7 +169,7 @@
         }
 
         /* 新增：各区域锚点偏移，避免导航栏遮挡 */
-        #about, #projects, #contact {
+        #about, #projects, #contact, #mcp-code {
             scroll-margin-top: 70px;
         }
 
@@ -327,6 +332,62 @@
             margin-right: 10px;
         }
 
+        /* 新增：GitHub MCP服务器代码区域样式 */
+        .mcp-code {
+            background-color: #fff;
+        }
+        .code-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .code-header {
+            background: #333;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .code-header h3 {
+            font-size: 1.2rem;
+        }
+        .code-header .github-link {
+            color: #92db95;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        .code-header .github-link i {
+            margin-right: 5px;
+        }
+        .code-header .github-link:hover {
+            color: white;
+        }
+        .code-content {
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #333;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+        .code-content .keyword {
+            color: #0033b3;
+            font-weight: 600;
+        }
+        .code-content .comment {
+            color: #6c757d;
+            font-style: italic;
+        }
+        .code-content .string {
+            color: #067d17;
+        }
+
         /* 页脚样式 */
         footer {
             background-color: #333;
@@ -432,14 +493,21 @@
             }
 
             /* 响应式下锚点偏移适配 */
-            #home, #about, #projects, #contact {
+            #home, #about, #projects, #contact, #mcp-code {
                 scroll-margin-top: 60px;
+            }
+
+            /* 响应式下代码区域适配 */
+            .code-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 - 为导航项添加nav-link类，用于JS定位 -->
+    <!-- 导航栏 - 为导航项添加nav-link类，用于JS定位，新增MCP代码导航 -->
     <nav>
         <div class="nav-container container">
             <div class="logo">
@@ -668,7 +736,7 @@
         function updateActiveNav() {
             const scrollPosition = window.scrollY + 80; // 偏移量，提前触发高亮
             const navLinkElements = document.querySelectorAll('.nav-link');
-            const sectionIds = ['#home', '#about', '#projects', '#contact'];
+            const sectionIds = ['#home', '#about', '#projects', '#mcp-code', '#contact'];
 
             // 遍历所有区域，判断当前滚动位置所在区域
             sectionIds.forEach((sectionId, index) => {
@@ -730,6 +798,19 @@
         // 初始化GitHub MCP服务器
         const githubServer = new GitHubMCPServer();
         githubServer.initialize();
+
+        // 新增HTTP/2相关脚本优化：异步加载非关键脚本（若有）
+        // 此处示例为延迟加载统计类脚本，实际可根据需求替换
+        if (window.addEventListener) {
+            window.addEventListener('load', function() {
+                // 延迟加载非关键脚本（示例）
+                const script = document.createElement('script');
+                script.src = 'https://example.com/non-critical-script.js';
+                script.async = true;
+                script.defer = true;
+                document.body.appendChild(script);
+            });
+        }
     </script>
 </body>
 </html>
