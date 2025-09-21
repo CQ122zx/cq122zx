@@ -9,13 +9,13 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 修正HTTP/2预加载文件路径：将原jpg格式统一改为页面实际使用的webp格式 -->
-    <link rel="preload" href="01f460e850e4c6d563b97ebc99cea620.webp" as="image" type="image/webp">
+    <!-- 修正HTTP/2预加载：1.删除重复资源 2.补充缺失关键webp 3.统一格式与类型匹配 -->
+    <link rel="preload" href="QQ_1758452084238.png" as="image" type="image/png">
     <link rel="preload" href="b3a5f2616624fa00fd65d52a299512a0.webp" as="image" type="image/webp">
     <link rel="preload" href="8e3bdb8706d6e01844e8a1412a40ecb7.webp" as="image" type="image/webp">
     <link rel="preload" href="facf8d1f-9403-4cdc-9126-13a997c7c3a7.webp" as="image" type="image/webp">
-    <link rel="preload" href="b3a5f2616624fa00fd65d52a299512a0.webp" as="image" type="image/webp">
     <link rel="preload" href="94401de90ac8618d64e47a36143a0aed.webp" as="image" type="image/webp">
+    <link rel="preload" href="e3fa199a96c2956d664151697a58cd6d.webp" as="image" type="image/webp">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <style>
@@ -515,7 +515,7 @@
     <nav>
         <div class="nav-container container">
             <div class="logo">
-                <img src="01f460e850e4c6d563b97ebc99cea620.webp" alt="校徽">
+                <img src="QQ_1758452084238.png" alt="校徽">
                 重庆市第一二二中学校
             </div>
             <ul class="nav-links" id="navLinks">
@@ -598,7 +598,7 @@
                     <div class="project-info">
                         <h3>学校概况</h3>
                         <p>学校建筑面积达15000平方米，拥有现代化的教学楼、图书馆、体育馆等设施，为学生提供全面的学习与生活环境。</p>
-                        <a href="https://cq122zx.github.io/cq-zxjs/xxjs.html" class="btn">查看详情</a>
+                        <a href="https://www.weiyun.com/document?fileId=QVJRTkxabm4=_fbc10b04019cce8320b4605f01067a1c_47135da0-deee-4abc-a91b-bb8b960f852d&officeType=pdf&tdsourcetag=s_weiyun_file" class="btn">查看详情</a>
                     </div>
                 </div>
                 <div class="project-card">
@@ -634,7 +634,7 @@
             <div class="contact-info">
                 <div class="contact-card">
                     <h3><i class="fab fa-weixin"></i> 学校微信公众号</h3>
-                    <p>打开微信点右上角的放大镜，在搜索框输入"重庆市第一二二中学校"</p>
+                    <p>打开微信点右上角的放大镜，在搜索框输入"重庆市第一二二中学"</p>
                 </div>
                 
                 <div class="contact-card">
@@ -803,17 +803,20 @@
         const githubServer = new GitHubMCPServer();
         githubServer.initialize();
 
-        // 修正HTTP/2脚本优化：同步页面实际图片格式，延迟加载webp格式非关键图片
+        // 优化HTTP/2脚本：1.覆盖所有非首屏webp 2.增加格式校验 3.避免重复加载
         if (window.addEventListener) {
             window.addEventListener('load', function() {
-                // 延迟加载非关键webp图片（校园环境、学生活动图）
-                const lazyImgs = document.querySelectorAll('.about-images-grid img');
+                // 延迟加载所有非首屏webp图片（校园环境、学生活动、家长亲启图）
+                const lazyImgs = document.querySelectorAll('.about-images-grid img, .project-img img[src$=".webp"]');
                 lazyImgs.forEach(img => {
-                    if (!img.complete && img.src.endsWith('.webp')) {
-                        img.src = img.src; // 触发HTTP/2多路复用加载
+                    // 双重校验：未加载完成 + 确认为webp格式
+                    if (!img.complete && img.src.toLowerCase().endsWith('.webp')) {
+                        const originalSrc = img.src;
+                        img.src = ''; // 清空旧地址避免缓存干扰
+                        img.src = originalSrc; // 利用HTTP/2多路复用重新加载
                     }
                 });
-                // 延迟加载非关键脚本（示例）
+                // 保留原有非关键脚本加载逻辑
                 const script = document.createElement('script');
                 script.src = 'https://example.com/non-critical-script.js';
                 script.async = true;
