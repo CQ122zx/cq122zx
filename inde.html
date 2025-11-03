@@ -173,7 +173,7 @@
         }
 
         /* 新增：各区域锚点偏移，避免导航栏遮挡 */
-        #about, #projects, #contact, #mcp-code {
+        #about, #projects, #contact {
             scroll-margin-top: 70px;
         }
 
@@ -250,7 +250,7 @@
             margin-bottom: 1.5rem;
         }
 
-                /* 项目展示区域 */
+        /* 项目展示区域 */
         .projects {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -340,62 +340,6 @@
 
         .contact-card h3 i {
             margin-right: 10px;
-        }
-
-        /* 新增：GitHub MCP服务器代码区域样式 */
-        .mcp-code {
-            background-color: #fff;
-        }
-        .code-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #f8f9fa;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        .code-header {
-            background: #333;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .code-header h3 {
-            font-size: 1.2rem;
-        }
-        .code-header .github-link {
-            color: #92db95;
-            text-decoration: none;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
-        .code-header .github-link i {
-            margin-right: 5px;
-        }
-        .code-header .github-link:hover {
-            color: white;
-        }
-        .code-content {
-            padding: 20px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-            color: #333;
-            overflow-x: auto;
-            line-height: 1.6;
-        }
-        .code-content .keyword {
-            color: #0033b3;
-            font-weight: 600;
-        }
-        .code-content .comment {
-            color: #6c757d;
-            font-style: italic;
-        }
-        .code-content .string {
-            color: #067d17;
         }
 
         /* 页脚样式 */
@@ -503,15 +447,8 @@
             }
 
             /* 响应式下锚点偏移适配 */
-            #home, #about, #projects, #contact, #mcp-code {
+            #home, #about, #projects, #contact {
                 scroll-margin-top: 60px;
-            }
-
-            /* 响应式下代码区域适配 */
-            .code-header {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
             }
 
             /* 响应式下联系卡片恢复垂直排列 */
@@ -525,10 +462,125 @@
                 width: 100%;
             }
         }
+        
+        /* 移动端优化 - 新增 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .logo img {
+                height: 40px;
+                margin-right: 8px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.4rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 2rem 0;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            
+            .about-text h3 {
+                font-size: 1.3rem;
+            }
+            
+            .about-text p {
+                font-size: 0.9rem;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .project-card {
+                margin-bottom: 1rem;
+            }
+            
+            .project-img {
+                height: 160px;
+            }
+            
+            .contact-info {
+                gap: 1rem;
+            }
+            
+            .contact-card {
+                padding: 1rem;
+                min-width: 100%;
+            }
+            
+            .footer-content p {
+                font-size: 0.9rem;
+            }
+            
+            /* 导航菜单优化 */
+            .nav-container {
+                padding: 0.5rem 0;
+            }
+            
+            .nav-links li {
+                margin-left: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+            
+            /* 增加滚动边距 */
+            #home, #about, #projects, #contact {
+                scroll-margin-top: 80px;
+            }
+            
+            /* 优化关于区域图片显示 */
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text, .about-img {
+                min-width: 100%;
+            }
+            
+            .about-images-grid {
+                gap: 1.5rem;
+                margin-top: 1.5rem;
+            }
+            
+            /* 按钮大小调整 */
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            /* 页脚社交图标调整 */
+            .social-links a {
+                font-size: 1.3rem;
+                margin: 0 0.3rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- 导航栏 - 为导航项添加nav-link类，用于JS定位，新增MCP代码导航 -->
+    <!-- 导航栏 - 为导航项添加nav-link类，用于JS定位 -->
     <nav>
         <div class="nav-container container">
             <div class="logo">
@@ -654,17 +706,17 @@
             <div class="contact-info">
                 <div class="contact-card">
                     <h3><i class="fab fa-weixin"></i> 学校微信公众号</h3>
-                    <p>打开微信点右上角的放大镜，在搜索框输入“重庆市第一二二中学”</p>
+                    <p>打开微信点右上角的放大镜，在搜索框输入"重庆市第一二二中学"</p>
                 </div>
                 <!-- 新增：学校微信服务号 -->
                 <div class="contact-card">
                     <h3><i class="fab fa-weixin"></i> 学校微信服务号</h3>
-                    <p>打开微信点右上角的放大镜，在搜索框输入“重庆市第一二二中学校”</p>
+                    <p>打开微信点右上角的放大镜，在搜索框输入"重庆市第一二二中学校"</p>
                 </div>
                 
                 <div class="contact-card">
                     <h3><i class="fab fa-qq"></i> 学校QQ频道号</h3>
-                    <p>打开QQ点搜索框，在搜索框输入“CQ122zx122”</p>
+                    <p>打开QQ点搜索框，在搜索框输入"CQ122zx122"</p>
                 </div>
                 
                 <div class="contact-card">
@@ -765,7 +817,7 @@
         function updateActiveNav() {
             const scrollPosition = window.scrollY + 80; // 偏移量，提前触发高亮
             const navLinkElements = document.querySelectorAll('.nav-link');
-            const sectionIds = ['#home', '#about', '#projects', '#mcp-code', '#contact'];
+            const sectionIds = ['#home', '#about', '#projects', '#contact'];
 
             // 遍历所有区域，判断当前滚动位置所在区域
             sectionIds.forEach((sectionId, index) => {
@@ -785,48 +837,6 @@
 
         // 初始化时触发一次，确保首页导航默认高亮
         updateActiveNav();
-
-        // GitHub MCP 服务器代码（保留原有代码，未修改）
-        // 这是一个模拟的MCP服务器实现示例
-        class GitHubMCPServer {
-            constructor() {
-                this.name = "重庆122中学GitHub服务";
-                this.version = "1.0.0";
-                this.repositories = [];
-            }
-            
-            // 初始化方法
-            initialize() {
-                console.log("GitHub MCP服务器已初始化");
-                this.loadRepositories();
-            }
-            
-            // 加载学校相关的代码仓库
-            loadRepositories() {
-                // 这里模拟从API获取学校项目仓库
-                this.repositories = [
-                    { name: "school-website", description: "学校官方网站源码" },
-                    { name: "learning-platform", description: "在线学习平台" },
-                    { name: "student-management", description: "学生管理系统" }
-                ];
-            }
-            
-            // 获取仓库列表
-            getRepositories() {
-                return this.repositories;
-            }
-            
-            // 创建新仓库
-            createRepository(name, description) {
-                const newRepo = { name, description };
-                this.repositories.push(newRepo);
-                return newRepo;
-            }
-        }
-
-        // 初始化GitHub MCP服务器
-        const githubServer = new GitHubMCPServer();
-        githubServer.initialize();
 
         // 优化HTTP/2脚本：1.覆盖所有非首屏webp 2.增加格式校验 3.避免重复加载
         if (window.addEventListener) {
