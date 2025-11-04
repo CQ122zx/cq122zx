@@ -40,6 +40,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif;
             line-height: 1.7;
@@ -47,6 +51,80 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             overflow-x: hidden;
             scroll-behavior: smooth;
+        }
+
+        /* 页面加载动画 */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .page-loader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .loader-text {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .loader-progress {
+            height: 100%;
+            width: 0%;
+            background: var(--accent-color);
+            border-radius: 2px;
+            animation: loading 2s ease-in-out forwards;
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
 
         .container {
@@ -167,7 +245,7 @@
             transform: scale(1.1);
         }
 
-        /* 高级英雄区域 - 已移除绿色背景 */
+        /* 高级英雄区域 */
         .hero {
             min-height: 100vh;
             background: url('b3a5f2616624fa00fd65d52a299512a0.webp') center/cover fixed;
@@ -195,6 +273,9 @@
             z-index: 2;
             max-width: 800px;
             padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
         }
 
         .hero h1 {
@@ -206,7 +287,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            animation: slideUp 1s ease-out;
+            animation: slideUp 1s ease-out 0.7s both;
         }
 
         .hero h2 {
@@ -214,7 +295,7 @@
             font-weight: 300;
             margin-bottom: 1.5rem;
             opacity: 0.9;
-            animation: slideUp 1s ease-out 0.2s both;
+            animation: slideUp 1s ease-out 0.9s both;
         }
 
         .hero p {
@@ -222,7 +303,18 @@
             margin-bottom: 2.5rem;
             opacity: 0.8;
             line-height: 1.8;
-            animation: slideUp 1s ease-out 0.4s both;
+            animation: slideUp 1s ease-out 1.1s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes slideUp {
@@ -253,6 +345,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            animation: slideUp 1s ease-out 1.3s both;
         }
 
         .btn::before {
@@ -279,6 +372,14 @@
         .section {
             padding: 6rem 0;
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title {
@@ -288,6 +389,14 @@
             margin-bottom: 4rem;
             color: var(--text-dark);
             position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate .section-title {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-title::after {
@@ -323,6 +432,14 @@
             font-size: 1.8rem;
             margin-bottom: 1rem;
             font-weight: 700;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate .about-text h3 {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .about-text p {
@@ -330,6 +447,14 @@
             margin-bottom: 1.5rem;
             line-height: 1.8;
             font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate .about-text p {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* 修改：图片放在右边竖着放在中间，保持原比例并添加圆角 */
@@ -350,7 +475,15 @@
             position: relative;
             width: 100%;
             max-width: 500px;
-            height: auto; /* 改为自动高度以保持原比例 */
+            height: auto;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate .about-img {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .about-img:hover {
@@ -360,14 +493,14 @@
 
         .about-img img {
             width: 100%;
-            height: auto; /* 改为自动高度以保持原比例 */
-            object-fit: contain; /* 改为contain以保持原比例 */
+            height: auto;
+            object-fit: contain;
             transition: var(--transition);
-            border-radius: var(--border-radius); /* 添加圆角 */
+            border-radius: var(--border-radius);
         }
 
         .about-img:hover img {
-            transform: scale(1.05); /* 稍微减小缩放比例，避免变形 */
+            transform: scale(1.05);
         }
 
         /* 服务区域 */
@@ -390,6 +523,14 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate .service-card {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .service-card::before {
@@ -493,6 +634,14 @@
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .section.animate .contact-card {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .contact-card:hover {
@@ -736,6 +885,19 @@
     </style>
 </head>
 <body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="loader-text">重庆市第一二二中学校</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- 导航栏 -->
     <nav id="navbar">
         <div class="container">
@@ -960,6 +1122,17 @@
     </a>
 
     <script>
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            const pageLoader = document.getElementById('pageLoader');
+            setTimeout(() => {
+                pageLoader.classList.add('fade-out');
+                setTimeout(() => {
+                    pageLoader.style.display = 'none';
+                }, 800);
+            }, 2000);
+        });
+
         // 移动端菜单切换
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
@@ -990,6 +1163,9 @@
             
             // 更新导航激活状态
             updateActiveNav();
+            
+            // 触发滚动动画
+            triggerScrollAnimations();
         });
 
         // 平滑滚动
@@ -1034,8 +1210,23 @@
             });
         }
 
+        // 滚动动画触发
+        function triggerScrollAnimations() {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.85) {
+                    section.classList.add('animate');
+                }
+            });
+        }
+
         // 初始化
         updateActiveNav();
+        triggerScrollAnimations();
     </script>
 </body>
 </html>
