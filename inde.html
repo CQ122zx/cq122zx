@@ -3,51 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>重庆市第一二二中学校</title>
+    <title>重庆市第一二二中学校 - 重庆市兼善中学龙凤校区</title>
     <!-- 添加网站图标 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>" type="image/svg+xml">
     <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16 32x32">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 修正HTTP/2预加载：1.删除重复资源 2.补充缺失关键webp 3.统一格式与类型匹配 -->
+    <!-- 预加载关键资源 -->
     <link rel="preload" href="QQ_1758452084238.png" as="image" type="image/png">
     <link rel="preload" href="b3a5f2616624fa00fd65d52a299512a0.webp" as="image" type="image/webp">
     <link rel="preload" href="8e3bdb8706d6e01844e8a1412a40ecb7.webp" as="image" type="image/webp">
     <link rel="preload" href="facf8d1f-9403-4cdc-9126-13a997c7c3a7.webp" as="image" type="image/webp">
     <link rel="preload" href="94401de90ac8618d64e47a36143a0aed.webp" as="image" type="image/webp">
     <link rel="preload" href="e3fa199a96c2956d664151697a58cd6d.webp" as="image" type="image/webp">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <style>
-        /* 公共容器样式 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
+        :root {
+            --primary-color: #2E7D32;
+            --primary-dark: #1B5E20;
+            --primary-light: #4CAF50;
+            --accent-color: #FFD54F;
+            --text-dark: #2C3E50;
+            --text-light: #546E7A;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Microsoft YaHei', 'Arial', sans-serif;
         }
 
         body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f5f5;
-            scroll-behavior: smooth; /* 新增：平滑滚动基础配置 */
+            font-family: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* 导航栏样式 - 新增导航高亮核心样式 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 高级导航栏 */
         nav {
-            background-color: #333;
-            color: white;
-            padding: 1rem 0;
-            position: sticky;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1.2rem 0;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+            padding: 0.8rem 0;
         }
 
         .nav-container {
@@ -57,338 +83,550 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
             display: flex;
             align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
         }
 
         .logo img {
             height: 50px;
-            margin-right: 10px;
+            width: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            padding: 2px;
+            transition: var(--transition);
+        }
+
+        .logo:hover img {
+            transform: rotate(10deg) scale(1.1);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 1.5rem;
-            position: relative;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-dark);
             text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-            padding: 5px 0;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
         }
 
-        /* 新增：当前导航项高亮样式 */
-        .nav-links a.active,
-        .nav-links a:hover {
-            color: #92db95;
-        }
-
-        .nav-links a:after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #7ada7d;
-            transition: width 0.3s;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transition: var(--transition);
+            border-radius: 2px;
         }
 
-        /* 新增：当前导航项下划线满宽显示 */
-        .nav-links a.active:after,
-        .nav-links a:hover:after {
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
             width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
         }
 
         .mobile-menu-btn {
             display: none;
-            cursor: pointer;
+            background: none;
+            border: none;
             font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
         }
 
-        /* 英雄区域样式 - 新增锚点偏移适配 */
-        #home {
-            scroll-margin-top: 70px; /* 适配导航栏高度，避免内容被遮挡 */
+        .mobile-menu-btn:hover {
+            background: rgba(46, 125, 50, 0.1);
+            transform: scale(1.1);
         }
 
+        /* 高级英雄区域 - 已移除绿色背景 */
         .hero {
-            height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('b3a5f2616624fa00fd65d52a299512a0.webp') center/cover no-repeat;
-            color: white;
+            min-height: 100vh;
+            background: url('b3a5f2616624fa00fd65d52a299512a0.webp') center/cover fixed;
             display: flex;
             align-items: center;
-            text-align: center;
+            justify-content: center;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
 
         .hero-content {
-            padding: 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
             max-width: 800px;
-            margin: 0 auto;
+            padding: 2rem;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 4rem;
+            font-weight: 800;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out 0.2s both;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+            line-height: 1.8;
+            animation: slideUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .btn {
-            display: inline-block;
-            background-color: #4CAF50;
-            color: white;
-            padding: 0.8rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--accent-color), #FFC107);
+            color: var(--text-dark);
+            padding: 1rem 2.5rem;
             text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
-            font-weight: bold;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(255, 213, 79, 0.3);
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            background-color: #15721a;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 40px rgba(255, 213, 79, 0.5);
         }
 
-        /* 通用区域样式 - 新增各区域锚点偏移适配 */
+        /* 高级内容区域 */
         .section {
-            padding: 5rem 0;
-            text-align: center;
-        }
-
-        /* 新增：各区域锚点偏移，避免导航栏遮挡 */
-        #about, #projects, #contact {
-            scroll-margin-top: 70px;
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #000000;
+            padding: 6rem 0;
             position: relative;
-            padding-bottom: 15px;
         }
 
-        .section h2:after {
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        .section-title::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
-            height: 3px;
-            background-color: #000000;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
         }
 
-        /* 关于重庆市第122中学校区域 */
+        /* 关于区域 */
         .about {
-            background-color: #fff;
+            background: var(--bg-white);
         }
 
         .about-content {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
         }
 
         .about-text {
-            flex: 1;
-            min-width: 300px;
             text-align: left;
         }
 
         .about-text h3 {
-            color: #000000;
-            margin: 1.5rem 0 0.5rem;
-            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* 修改：图片放在右边竖着放在中间，保持原比例并添加圆角 */
+        .about-images {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
         .about-img {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: auto; /* 改为自动高度以保持原比例 */
+        }
+
+        .about-img:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
         .about-img img {
             width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0.5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+            height: auto; /* 改为自动高度以保持原比例 */
+            object-fit: contain; /* 改为contain以保持原比例 */
+            transition: var(--transition);
+            border-radius: var(--border-radius); /* 添加圆角 */
         }
 
-        /* 新增：图片网格布局 */
-        .about-images-grid {
-            display: 2grid;
-            grid-template-columns: repeat(1, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
+        .about-img:hover img {
+            transform: scale(1.05); /* 稍微减小缩放比例，避免变形 */
         }
 
-        .about-images-grid img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0.5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
+        /* 服务区域 */
+        .services {
+            background: var(--bg-light);
         }
 
-        /* 项目展示区域 */
-        .projects {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
 
-        .project-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .service-card {
+            background: var(--bg-white);
+            border-radius: var(--border-radius);
+            padding: 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
             overflow: hidden;
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
         }
 
-        .project-card:hover {
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
 
-        .project-img {
+        .service-image {
+            width: 100%;
             height: 200px;
             overflow: hidden;
         }
 
-        .project-img img {
+        .service-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
 
-        .project-card:hover .project-img img {
+        .service-card:hover .service-image img {
             transform: scale(1.1);
         }
 
-        .project-info {
-            padding: 1.5rem;
-            flex-grow: 1;
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
-        }
-
-        .project-info h3 {
-            color: #000000;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-info p {
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        /* 联系区域样式 */
-        .contact {
-            background-color: #e8f5e9;
-        }
-
-        .contact-info {
-            /* 修改为弹性布局实现横向排列，保留响应式适配 */
-            display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .service-card h3 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 联系区域 */
+        .contact {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact .section-title::after {
+            background: linear-gradient(90deg, var(--accent-color), #FFECB3);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            text-align: left;
-            margin-top: 2rem;
         }
 
         .contact-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            /* 固定卡片宽度，确保横向排列整齐 */
-            min-width: 250px;
-            flex: 1;
-            max-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
         }
 
         .contact-card h3 {
-            color: #000000;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
+            font-weight: 600;
         }
 
-        .contact-card h3 i {
-            margin-right: 10px;
+        .contact-card p {
+            opacity: 0.9;
+            line-height: 1.6;
         }
 
-        /* 页脚样式 */
+        /* 高级页脚 */
         footer {
-            background-color: #333;
+            background: var(--text-dark);
             color: white;
-            text-align: center;
-            padding: 2rem 0;
+            padding: 4rem 0 2rem;
         }
 
         .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
         }
 
         .social-links {
-            margin: 1rem 0;
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
         .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             color: white;
-            margin: 0 0.5rem;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-            display: inline-block;
+            text-decoration: none;
+            transition: var(--transition);
         }
 
         .social-links a:hover {
-            color: #76c478;
+            background: var(--accent-color);
+            color: var(--text-dark);
             transform: translateY(-3px);
         }
 
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+
+        /* 返回顶部按钮 */
         .back-to-top {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            width: 40px;
-            height: 40px;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            z-index: 99;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 100;
             opacity: 0;
             visibility: hidden;
         }
@@ -399,31 +637,43 @@
         }
 
         .back-to-top:hover {
-            background-color: #4CAF50;
+            background: var(--primary-dark);
             transform: translateY(-3px);
         }
 
-        /* 响应式样式 */
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
-                flex-direction: column;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 right: 0;
-                background-color: #000000;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
                 padding: 1rem;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                box-shadow: var(--shadow);
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
             }
 
             .nav-links.active {
                 display: flex;
-            }
-
-            .nav-links li {
-                margin: 0.5rem 0;
-                text-align: center;
             }
 
             .mobile-menu-btn {
@@ -431,226 +681,146 @@
             }
 
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
-            
+
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+
             .section {
-                padding: 3rem 0;
+                padding: 4rem 0;
             }
-            
-            .section h2 {
-                font-size: 2rem;
+
+            .section-title {
+                font-size: 2.5rem;
             }
-            
-            .about-images-grid {
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
-            /* 响应式下锚点偏移适配 */
-            #home, #about, #projects, #contact {
-                scroll-margin-top: 60px;
-            }
-
-            /* 响应式下联系卡片恢复垂直排列 */
-            .contact-info {
+            /* 移动端保持竖排布局 */
+            .about-images {
                 flex-direction: column;
-                align-items: center;
-            }
-
-            .contact-card {
-                max-width: 100%;
-                width: 100%;
+                justify-content: flex-start;
             }
         }
-        
-        /* 移动端优化 - 新增 */
+
         @media (max-width: 480px) {
             .container {
-                padding: 0 10px;
+                padding: 0 15px;
             }
-            
-            .logo {
-                font-size: 1.2rem;
-            }
-            
-            .logo img {
-                height: 40px;
-                margin-right: 8px;
-            }
-            
+
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
-            
+
             .hero h2 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
-            
-            .hero p {
-                font-size: 1rem;
+
+            .section-title {
+                font-size: 2rem;
             }
-            
-            .section {
-                padding: 2rem 0;
-            }
-            
-            .section h2 {
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-            }
-            
-            .about-text h3 {
-                font-size: 1.3rem;
-            }
-            
-            .about-text p {
-                font-size: 0.9rem;
-            }
-            
-            .projects {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .project-card {
-                margin-bottom: 1rem;
-            }
-            
-            .project-img {
-                height: 160px;
-            }
-            
-            .contact-info {
-                gap: 1rem;
-            }
-            
+
+            .service-card,
             .contact-card {
-                padding: 1rem;
-                min-width: 100%;
+                padding: 1.5rem;
             }
-            
-            .footer-content p {
-                font-size: 0.9rem;
-            }
-            
-            /* 导航菜单优化 */
-            .nav-container {
-                padding: 0.5rem 0;
-            }
-            
-            .nav-links li {
-                margin-left: 1rem;
-            }
-            
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-            
-            /* 增加滚动边距 */
-            #home, #about, #projects, #contact {
-                scroll-margin-top: 80px;
-            }
-            
-            /* 优化关于区域图片显示 */
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .about-text, .about-img {
-                min-width: 100%;
-            }
-            
-            .about-images-grid {
-                gap: 1.5rem;
-                margin-top: 1.5rem;
-            }
-            
-            /* 按钮大小调整 */
-            .btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.9rem;
-            }
-            
-            /* 页脚社交图标调整 */
-            .social-links a {
-                font-size: 1.3rem;
-                margin: 0 0.3rem;
+
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 - 为导航项添加nav-link类，用于JS定位 -->
-    <nav>
-        <div class="nav-container container">
-            <div class="logo">
-                <img src="QQ_1758452084238.png" alt="校徽">
-                重庆市第一二二中学校
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-link active">首页</a></li>
-                <li><a href="#about" class="nav-link">关于学校</a></li>
-                <li><a href="#projects" class="nav-link">学校服务</a></li>
-                <li><a href="#contact" class="nav-link">联系我们</a></li>
-            </ul>
-            <div class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
+    <!-- 导航栏 -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#home" class="logo">
+                    <img src="QQ_1758452084238.png" alt="重庆市第一二二中学校徽">
+                    <span>重庆市第一二二中学校</span>
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="nav-link active">首页</a></li>
+                    <li><a href="#about" class="nav-link">关于学校</a></li>
+                    <li><a href="#services" class="nav-link">学校服务</a></li>
+                    <li><a href="#contact" class="nav-link">联系我们</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- 英雄区域 -->
     <section id="home" class="hero">
-        <div class="hero-content container">
-            <h1>重庆市第一二二中学校</h1>
-            <h2>重庆市兼善中学龙凤校区</h2>
-            <p>博学、纯朴、创造、树人 - 培育未来领袖的摇篮</p>
-            <a href="#about" class="btn">了解更多</a>
+        <div class="container">
+            <div class="hero-content">
+                <h1>重庆市第一二二中学校</h1>
+                <h2>重庆市兼善中学龙凤校区</h2>
+                <p>博学、纯朴、创造、树人 - 培育未来领袖的摇篮</p>
+                <a href="#about" class="btn">
+                    <span>探索校园</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- 关于学校区域 -->
     <section id="about" class="section about">
         <div class="container">
-            <h2>关于重庆市第一二二中学校</h2>
+            <h2 class="section-title">关于学校</h2>
             <div class="about-content">
                 <div class="about-text">
                     <h3>重庆市第一二二中学</h3>
                     <h3>重庆市兼善中学龙凤校区</h3>
-                     <h4>重庆公立中学</h4>
-                      <br/></p>重庆市第一二二中学（简称"122中"），英文名Chongqing No.122 Middle School，是重庆市北碚区教委直属的公办初级中学，以"博学、纯朴、创造、树人"为校训，位于龙凤桥街道龙凤二村85号。在2025年8月的时候重庆市第一二二中学划分成了兼善中学龙凤校区。学校内设办公室、教导处、德育处、后勤处及安保科五个部门，2022年度财政收支均为1285.85万元，其中教育支出占比68.3%。<br/><br/>学校实施初中义务教育，通过"书香健身操"、远足活动及科技创新项目培养学生综合素质。2024年开展的"与春天相约"远足活动旨在提升学生意志品质与环保意识，信息技术项目获区级奖项。该校重视师资建设，举办"真慧杯"青年教师课堂教学竞赛深化"简约·致真"课堂文化探索，2019年完成15641.40平方米教学楼及辅助用房改扩建项目。2021-2022年累计资助困难学生40人次，执行率达100%。</p>
-                      <br/><p>中文名：</>重庆市第一二二中学</p>
-                      <br/><p>副中文名：</>重庆市兼善中学龙凤校区</p>
-                      <p>英文名：</>chongqing No.122 middle school</p>
-                      <p>别名：</>122中</p>
-                      <p>训博学：</>纯朴 创造 树人</p>
-                      <p>类别 ：</>公立中学</p>
-                      <p>所属地区: </>中国 重庆市北碚区</p>
+                    <h4>重庆公立中学</h4>
+                    <p>重庆市第一二二中学（简称"122中"），英文名Chongqing No.122 Middle School，是重庆市北碚区教委直属的公办初级中学，以"博学、纯朴、创造、树人"为校训，位于龙凤桥街道龙凤二村85号。</p>
+                    <p>在2025年8月的时候重庆市第一二二中学划分成了兼善中学龙凤校区。学校内设办公室、教导处、德育处、后勤处及安保科五个部门，2022年度财政收支均为1285.85万元，其中教育支出占比68.3%。</p>
+                    <p>学校实施初中义务教育，通过"书香健身操"、远足活动及科技创新项目培养学生综合素质。2024年开展的"与春天相约"远足活动旨在提升学生意志品质与环保意识，信息技术项目获区级奖项。</p>
+                    <p id="about-text3">中文名：重庆市第一二二中学</p>
+                    <p id="about-text4">副中文名：重庆市兼善中学龙凤校区</p>
+                    <p id="about-text5">英文名：chongqing No.122 middle school</p>
+                    <p id="about-text5">副英文名：Longfeng Campus of Jiansan Middle School, Chongqing</p>
+                    <p id="about-text6">别名：122中</p>
+                    <p id="about-text6">副别名：兼善中学龙凤校区</p>
+                    <p id="about-text7">训博学：纯朴 创造 树人</p>
+                    <p id="about-text8">类别 ：公立中学</p>
+                    <p id="about-text9">所属地区: 中国 重庆市北碚区</p>
 
-                    <h3><i class="fas fa-school"></i> 学校介绍</h3>
-                    <p>重庆市第一二二中学位于重庆北碚区，以"博学、纯朴、创造、树人"为校训，是一所公办的中学。学校致力于为学生提供优质的教育资源和全面的成长环境。</p>
+                    <h3 id="about-subtitle4"><i class="fas fa-school"></i> 学校介绍</h3>
+                    <p id="about-text10">重庆市第一二二中学位于重庆北碚区，以"博学、纯朴、创造、树人"为校训，是一所公办的中学。学校致力于为学生提供优质的教育资源和全面的成长环境。</p>
                     
-                    <h3><i class="fas fa-graduation-cap"></i> 学校校训</h3>
-                    <p>根据我校的办学传统、办学特点、以及我校"广纳人文灵秀，彰显创造激情，开启智慧人生"的办学理念，提炼出学校的校训是"博学、纯朴、创造、树人"。</p>
+                    <h3 id="about-subtitle5"><i class="fas fa-graduation-cap"></i> 学校校训</h3>
+                    <p id="about-text11">根据我校的办学传统、办学特点、以及我校"广纳人文灵秀，彰显创造激情，开启智慧人生"的办学理念，提炼出学校的校训是"博学、纯朴、创造、树人"。</p>
                     
-                    <h3><i class="fas fa-book"></i> 博学</h3>
-                    <p>是对同学们学业上的要求：要求同学们在校就读期间，不但要学好书本知识，更重要的还应养成爱书、读书的良好习惯，把读书学习作为自己终身的追求。</p>
+                    <h3 id="about-subtitle6"><i class="fas fa-book"></i> 博学</h3>
+                    <p id="about-text12">是对同学们学业上的要求：要求同学们在校就读期间，不但要学好书本知识，更重要的还应养成爱书、读书的良好习惯，把读书学习作为自己终身的追求。</p>
 
-                    <h3><i class="fas fa-heart"></i> 纯朴</h3>
-                    <p>是对同学们品德的要求：122中学生有吃苦耐劳、学习刻苦，在人格上纯正、质朴的良好传统。我们要保持好、发扬好这种传统。</p>
+                    <h3 id="about-subtitle7"><i class="fas fa-heart"></i> 纯朴</h3>
+                    <p id="about-text13">是对同学们品德的要求：122中学生有吃苦耐劳、学习刻苦，在人格上纯正、质朴的良好传统。我们要保持好、发扬好这种传统。</p>
 
-                    <h3><i class="fas fa-lightbulb"></i> 创造</h3>
-                    <p>是对同学们努力提高创新和实践能力的要求：我们的办学理念里就有"彰显创造激情、开启智慧人生"的培养人才的目标。</p>
+                    <h3 id="about-subtitle8"><i class="fas fa-lightbulb"></i> 创造</h3>
+                    <p id="about-text14">是对同学们努力提高创新和实践能力的要求：我们的办学理念里就有"彰显创造激情、开启智慧人生"的培养人才的目标。</p>
 
-                    <h3><i class="fas fa-tree"></i> 树人</h3>
-                    <p>我们122中学要树什么样的人？我们要树把为学业而甘于奋斗、拼搏、吃苦作为一种无与伦比的高尚享受的人；我们要树干事有强烈的责任意识的人。</p>
+                    <h3 id="about-subtitle9"><i class="fas fa-tree"></i> 树人</h3>
+                    <p id="about-text15">我们122中学要树什么样的人？我们要树把为学业而甘于奋斗、拼搏、吃苦作为一种无与伦比的高尚享受的人；我们要树干事有强烈的责任意识的人。</p>
                 </div>
-                <div class="about-img">
-                    <img src="8e3bdb8706d6e01844e8a1412a40ecb7.webp" alt="学校主楼">
-                    
-                    <!-- 新增的两个图片 -->
-                    <div class="about-images-grid">
+                <div class="about-images">
+                    <!-- 修改：图片放在右边竖着放在中间，保持原比例并添加圆角 -->
+                    <div class="about-img">
+                        <img src="8e3bdb8706d6e01844e8a1412a40ecb7.webp" alt="学校主楼">
+                    </div>
+                    <div class="about-img">
                         <img src="e3fa199a96c2956d664151697a58cd6d.webp" alt="校园环境">
+                    </div>
+                    <div class="about-img">
                         <img src="94401de90ac8618d64e47a36143a0aed.webp" alt="学生活动">
                     </div>
                 </div>
@@ -658,36 +828,45 @@
         </div>
     </section>
 
-    <!-- 项目展示区域 -->
-    <section id="projects" class="section">
+    <!-- 服务区域 -->
+    <section id="services" class="section services">
         <div class="container">
-            <h2>学校服务</h2>
-            <div class="projects">
-                <div class="project-card">
-                    <div class="project-img">
+            <h2 class="section-title">学校服务</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">
                         <img src="8e3bdb8706d6e01844e8a1412a40ecb7.webp" alt="学校概况">
                     </div>
-                    <div class="project-info">
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
                         <h3>学校概况</h3>
                         <p>学校建筑面积达15000平方米，拥有现代化的教学楼、图书馆、体育馆等设施，为学生提供全面的学习与生活环境。</p>
                         <a href="https://www.weiyun.com/document?fileId=QVJRTkxabm4=_fbc10b04019cce8320b4605f01067a1c_47135da0-deee-4abc-a91b-bb8b960f852d&officeType=pdf&tdsourcetag=s_weiyun_file" class="btn">查看详情</a>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-img">
+                <div class="service-card">
+                    <div class="service-image">
                         <img src="94401de90ac8618d64e47a36143a0aed.webp" alt="校园动态">
                     </div>
-                    <div class="project-info">
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
                         <h3>校园动态</h3>
                         <p>近期学校举办了运动会、文化节等丰富多彩的活动，旨在培养学生的综合素质和团队协作精神。</p>
                         <a href="https://cq122zx.github.io/CQ122zxdt/xydt.html" class="btn">查看详情</a>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-img">
+                <div class="service-card">
+                    <div class="service-image">
                         <img src="facf8d1f-9403-4cdc-9126-13a997c7c3a7.webp" alt="家长亲启">
                     </div>
-                    <div class="project-info">
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
                         <h3>家长亲启</h3>
                         <p>学校高度重视家校沟通，定期开展家长会、家长培训等活动，共同助力学生成长。</p>
                         <a href="#" class="btn">查看详情</a>
@@ -700,33 +879,37 @@
     <!-- 联系区域 -->
     <section id="contact" class="section contact">
         <div class="container">
-            <h2>联系我们</h2>
-            <p>有任何问题或合作意向，欢迎随时联系我们</p>
-            
-            <div class="contact-info">
+            <h2 class="section-title">联系我们</h2>
+            <div class="contact-grid">
                 <div class="contact-card">
-                    <h3><i class="fab fa-weixin"></i> 学校微信公众号</h3>
-                    <p>打开微信点右上角的放大镜，在搜索框输入"重庆市第一二二中学"</p>
+                    <div class="contact-icon">
+                        <i class="fab fa-weixin"></i>
+                    </div>
+                    <h3>微信公众号</h3>
+                    <p>搜索"重庆市第一二二中学"关注我们</p>
                 </div>
-                <!-- 新增：学校微信服务号 -->
                 <div class="contact-card">
-                    <h3><i class="fab fa-weixin"></i> 学校微信服务号</h3>
-                    <p>打开微信点右上角的放大镜，在搜索框输入"重庆市第一二二中学校"</p>
+                    <div class="contact-icon">
+                        <i class="fab fa-weixin"></i>
+                    </div>
+                    <h3>微信服务号</h3>
+                    <p>搜索"重庆市第一二二中学校"获取服务</p>
                 </div>
-                
                 <div class="contact-card">
-                    <h3><i class="fab fa-qq"></i> 学校QQ频道号</h3>
-                    <p>打开QQ点搜索框，在搜索框输入"CQ122zx122"</p>
+                    <div class="contact-icon">
+                        <i class="fab fa-qq"></i>
+                    </div>
+                    <h3>QQ频道</h3>
+                    <p>搜索"CQ122zx122"加入我们</p>
                 </div>
-                
                 <div class="contact-card">
-                    <h3><i class="fas fa-phone"></i> 联系电话</h3>
-                    <p>周琳主任电话: 15111893287</p>
-                </div>
-                
-                <div class="contact-card">
-                    <h3><i class="fas fa-map-marker-alt"></i> 学校地址</h3>
-                    <p>重庆市北碚区龙凤桥街道龙凤二村85号</p>
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>学校地址</h3>
+                    <p>（北区）：重庆市北碚区毛背沱137号</p>
+                    <p>（南区）：重庆市北碚区蔡家岗街道洪家傍61号</p>
+                    <p>（龙凤校区）重庆市北碚区龙凤桥街道龙凤二村85号</p>
                 </div>
             </div>
         </div>
@@ -736,13 +919,37 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>重庆市兼善集团第一二二中学校</p>
-                <p>重庆市兼善中学龙凤校区</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-weixin"></i></a>
-                    <a href="#"><i class="fab fa-qq"></i></a>
-                    <a href="#"><i class="fab fa-weibo"></i></a>
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="QQ_1758452084238.png" alt="校徽">
+                        <div class="footer-logo-text">重庆市第一二二中学校</div>
+                    </div>
+                    <p>重庆市兼善中学龙凤校区 - 培育未来领袖的摇篮</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                    </div>
                 </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于学校</a></li>
+                        <li><a href="#services">学校服务</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>联系信息</h4>
+                    <p>地址：重庆市北碚区龙凤桥街道龙凤二村85号</p>
+                    <p>龙凤校区周琳主任电话：15111893287</p>
+                    <p>E-mail：cqsjszx@163.com</p>
+                    <p>校办电话：023-68262481</p>
+                    <p>招生电话：023-68265761&nbsp;&nbsp;&nbsp;68266899</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
                 <p>&copy; 2025 重庆市第一二二中学校. 保留所有权利.</p>
             </div>
         </div>
@@ -759,106 +966,76 @@
 
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
         });
 
-        // 平滑滚动（保留原有逻辑，优化锚点定位）
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') {
-                    // 返回顶部特殊处理
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                    return;
-                }
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop, 
-                        behavior: 'smooth'
-                    });
-
-                    // 移动端菜单点击后关闭
-                    if (window.innerWidth <= 768) {
-                        navLinks.classList.remove('active');
-                    }
-                }
-            });
-        });
-
-        // 返回顶部按钮
-        const backToTopBtn = document.getElementById('backToTop');
-        
+        // 导航栏滚动效果
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('show');
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
             } else {
-                backToTopBtn.classList.remove('show');
+                navbar.classList.remove('scrolled');
             }
-
-            // 新增：滚动时更新导航高亮状态
+            
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+            
+            // 更新导航激活状态
             updateActiveNav();
         });
 
-        backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // 移动端点击后关闭菜单
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    }
+                }
             });
         });
 
-        // 新增：更新导航高亮状态的核心函数
+        // 更新导航激活状态
         function updateActiveNav() {
-            const scrollPosition = window.scrollY + 80; // 偏移量，提前触发高亮
-            const navLinkElements = document.querySelectorAll('.nav-link');
-            const sectionIds = ['#home', '#about', '#projects', '#contact'];
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-            // 遍历所有区域，判断当前滚动位置所在区域
-            sectionIds.forEach((sectionId, index) => {
-                const section = document.querySelector(sectionId);
-                if (section) {
-                    const sectionTop = section.offsetTop;
-                    const sectionBottom = sectionTop + section.offsetHeight;
-
-                    // 若当前滚动位置在该区域内，高亮对应导航
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                        navLinkElements.forEach(link => link.classList.remove('active'));
-                        navLinkElements[index].classList.add('active');
-                    }
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
                 }
             });
         }
 
-        // 初始化时触发一次，确保首页导航默认高亮
+        // 初始化
         updateActiveNav();
-
-        // 优化HTTP/2脚本：1.覆盖所有非首屏webp 2.增加格式校验 3.避免重复加载
-        if (window.addEventListener) {
-            window.addEventListener('load', function() {
-                // 延迟加载所有非首屏webp图片（校园环境、学生活动、家长亲启图）
-                const lazyImgs = document.querySelectorAll('.about-images-grid img, .project-img img[src$=".webp"]');
-                lazyImgs.forEach(img => {
-                    // 双重校验：未加载完成 + 确认为webp格式
-                    if (!img.complete && img.src.toLowerCase().endsWith('.webp')) {
-                        const originalSrc = img.src;
-                        img.src = ''; // 清空旧地址避免缓存干扰
-                        img.src = originalSrc; // 利用HTTP/2多路复用重新加载
-                    }
-                });
-                // 保留原有非关键脚本加载逻辑
-                const script = document.createElement('script');
-                script.src = 'https://example.com/non-critical-script.js';
-                script.async = true;
-                script.defer = true;
-                document.body.appendChild(script);
-            });
-        }
     </script>
 </body>
 </html>
