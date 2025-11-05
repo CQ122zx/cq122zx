@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>重庆市第一二二中学校 - 重庆市兼善中学龙凤校区</title>
+    <title>重庆市第一二二中学校-兼善中学龙凤校区</title>
     <!-- 添加网站图标 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>" type="image/svg+xml">
     <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16 32x32">
@@ -51,80 +51,6 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             overflow-x: hidden;
             scroll-behavior: smooth;
-        }
-
-        /* 页面加载动画 */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .page-loader.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-content {
-            text-align: center;
-            color: white;
-        }
-
-        .loader-logo {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .loader-text {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .loader-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 2px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .loader-progress {
-            height: 100%;
-            width: 0%;
-            background: var(--accent-color);
-            border-radius: 2px;
-            animation: loading 2s ease-in-out forwards;
-        }
-
-        @keyframes loading {
-            0% { width: 0%; }
-            100% { width: 100%; }
         }
 
         .container {
@@ -455,6 +381,27 @@
         .section.animate .about-text p {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* 优化：信息卡片布局 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-item {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-item strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
         /* 修改：图片放在右边竖着放在中间，保持原比例并添加圆角 */
@@ -849,6 +796,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
             /* 移动端保持竖排布局 */
             .about-images {
                 flex-direction: column;
@@ -885,19 +836,6 @@
     </style>
 </head>
 <body>
-    <!-- 页面加载动画 -->
-    <div class="page-loader" id="pageLoader">
-        <div class="loader-content">
-            <div class="loader-logo">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
-            <div class="loader-text">重庆市第一二二中学校</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-        </div>
-    </div>
-
     <!-- 导航栏 -->
     <nav id="navbar">
         <div class="container">
@@ -946,33 +884,63 @@
                     <p>重庆市第一二二中学（简称"122中"），英文名Chongqing No.122 Middle School，是重庆市北碚区教委直属的公办初级中学，以"博学、纯朴、创造、树人"为校训，位于龙凤桥街道龙凤二村85号。</p>
                     <p>在2025年8月的时候重庆市第一二二中学划分成了兼善中学龙凤校区。学校内设办公室、教导处、德育处、后勤处及安保科五个部门，2022年度财政收支均为1285.85万元，其中教育支出占比68.3%。</p>
                     <p>学校实施初中义务教育，通过"书香健身操"、远足活动及科技创新项目培养学生综合素质。2024年开展的"与春天相约"远足活动旨在提升学生意志品质与环保意识，信息技术项目获区级奖项。</p>
-                    <p id="about-text3">中文名：重庆市第一二二中学</p>
-                    <p id="about-text4">副中文名：重庆市兼善中学龙凤校区</p>
-                    <p id="about-text5">英文名：chongqing No.122 middle school</p>
-                    <p id="about-text5">副英文名：Longfeng Campus of Jiansan Middle School, Chongqing</p>
-                    <p id="about-text6">别名：122中</p>
-                    <p id="about-text6">副别名：兼善中学龙凤校区</p>
-                    <p id="about-text7">训博学：纯朴 创造 树人</p>
-                    <p id="about-text8">类别 ：公立中学</p>
-                    <p id="about-text9">所属地区: 中国 重庆市北碚区</p>
-
-                    <h3 id="about-subtitle4"><i class="fas fa-school"></i> 学校介绍</h3>
-                    <p id="about-text10">重庆市第一二二中学位于重庆北碚区，以"博学、纯朴、创造、树人"为校训，是一所公办的中学。学校致力于为学生提供优质的教育资源和全面的成长环境。</p>
                     
-                    <h3 id="about-subtitle5"><i class="fas fa-graduation-cap"></i> 学校校训</h3>
-                    <p id="about-text11">根据我校的办学传统、办学特点、以及我校"广纳人文灵秀，彰显创造激情，开启智慧人生"的办学理念，提炼出学校的校训是"博学、纯朴、创造、树人"。</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>中文名</strong>
+                            重庆市第一二二中学
+                        </div>
+                        <div class="info-item">
+                            <strong>副中文名</strong>
+                            重庆市兼善中学龙凤校区
+                        </div>
+                        <div class="info-item">
+                            <strong>英文名</strong>
+                            Chongqing No.122 Middle School
+                        </div>
+                        <div class="info-item">
+                            <strong>副英文名</strong>
+                            Longfeng Campus of Jiansan Middle School, Chongqing
+                        </div>
+                        <div class="info-item">
+                            <strong>别名</strong>
+                            122中
+                        </div>
+                        <div class="info-item">
+                            <strong>副别名</strong>
+                            兼善中学龙凤校区
+                        </div>
+                        <div class="info-item">
+                            <strong>校训</strong>
+                            博学、纯朴、创造、树人
+                        </div>
+                        <div class="info-item">
+                            <strong>类别</strong>
+                            公立中学
+                        </div>
+                        <div class="info-item">
+                            <strong>所属地区</strong>
+                            中国 重庆市北碚区
+                        </div>
+                    </div>
                     
-                    <h3 id="about-subtitle6"><i class="fas fa-book"></i> 博学</h3>
-                    <p id="about-text12">是对同学们学业上的要求：要求同学们在校就读期间，不但要学好书本知识，更重要的还应养成爱书、读书的良好习惯，把读书学习作为自己终身的追求。</p>
+                    <h3><i class="fas fa-school"></i> 学校介绍</h3>
+                    <p>重庆市第一二二中学位于重庆北碚区，以"博学、纯朴、创造、树人"为校训，是一所公办的中学。学校致力于为学生提供优质的教育资源和全面的成长环境。</p>
+                    
+                    <h3><i class="fas fa-graduation-cap"></i> 学校校训</h3>
+                    <p>根据我校的办学传统、办学特点、以及我校"广纳人文灵秀，彰显创造激情，开启智慧人生"的办学理念，提炼出学校的校训是"博学、纯朴、创造、树人"。</p>
+                    
+                    <h3><i class="fas fa-book"></i> 博学</h3>
+                    <p>是对同学们学业上的要求：要求同学们在校就读期间，不但要学好书本知识，更重要的还应养成爱书、读书的良好习惯，把读书学习作为自己终身的追求。</p>
 
-                    <h3 id="about-subtitle7"><i class="fas fa-heart"></i> 纯朴</h3>
-                    <p id="about-text13">是对同学们品德的要求：122中学生有吃苦耐劳、学习刻苦，在人格上纯正、质朴的良好传统。我们要保持好、发扬好这种传统。</p>
+                    <h3><i class="fas fa-heart"></i> 纯朴</h3>
+                    <p>是对同学们品德的要求：122中学生有吃苦耐劳、学习刻苦，在人格上纯正、质朴的良好传统。我们要保持好、发扬好这种传统。</p>
 
-                    <h3 id="about-subtitle8"><i class="fas fa-lightbulb"></i> 创造</h3>
-                    <p id="about-text14">是对同学们努力提高创新和实践能力的要求：我们的办学理念里就有"彰显创造激情、开启智慧人生"的培养人才的目标。</p>
+                    <h3><i class="fas fa-lightbulb"></i> 创造</h3>
+                    <p>是对同学们努力提高创新和实践能力的要求：我们的办学理念里就有"彰显创造激情、开启智慧人生"的培养人才的目标。</p>
 
-                    <h3 id="about-subtitle9"><i class="fas fa-tree"></i> 树人</h3>
-                    <p id="about-text15">我们122中学要树什么样的人？我们要树把为学业而甘于奋斗、拼搏、吃苦作为一种无与伦比的高尚享受的人；我们要树干事有强烈的责任意识的人。</p>
+                    <h3><i class="fas fa-tree"></i> 树人</h3>
+                    <p>我们122中学要树什么样的人？我们要树把为学业而甘于奋斗、拼搏、吃苦作为一种无与伦比的高尚享受的人；我们要树干事有强烈的责任意识的人。</p>
                 </div>
                 <div class="about-images">
                     <!-- 修改：图片放在右边竖着放在中间，保持原比例并添加圆角 -->
@@ -1104,7 +1072,7 @@
                 </div>
                 <div class="footer-contact">
                     <h4>联系信息</h4>
-                    <p>地址：重庆市北碚区龙凤桥街道龙凤二村85号</p>
+                    <p>地址：（龙凤校区）重庆市北碚区龙凤桥街道龙凤二村85号</p>
                     <p>龙凤校区周琳主任电话：15111893287</p>
                     <p>E-mail：cqsjszx@163.com</p>
                     <p>校办电话：023-68262481</p>
@@ -1122,17 +1090,6 @@
     </a>
 
     <script>
-        // 页面加载动画
-        window.addEventListener('load', function() {
-            const pageLoader = document.getElementById('pageLoader');
-            setTimeout(() => {
-                pageLoader.classList.add('fade-out');
-                setTimeout(() => {
-                    pageLoader.style.display = 'none';
-                }, 800);
-            }, 2000);
-        });
-
         // 移动端菜单切换
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
