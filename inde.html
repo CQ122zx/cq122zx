@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>重庆市第一二二中学校-兼善中学龙凤校区</title>
-    <!-- 添加网站图标 -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎓</text></svg>" type="image/svg+xml">
-    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="16x16 32x32">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <!-- 网站图标 - 全部替换为校徽 -->
+    <link rel="icon" href="Image_1760104952910_edit_51856054479435.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="Image_1760104952910_edit_51856054479435.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="Image_1760104952910_edit_51856054479435.png" type="image/png" sizes="48x48">
+    <link rel="icon" href="Image_1760104952910_edit_51856054479435.png" type="image/png" sizes="64x64">
+    <!-- Apple设备图标 -->
+    <link rel="apple-touch-icon" href="Image_1760104952910_edit_51856054479435.png" sizes="180x180">
+    <link rel="apple-touch-icon-precomposed" href="Image_1760104952910_edit_51856054479435.png" sizes="180x180">
+    <!-- Windows设备图标 -->
+    <meta name="msapplication-TileImage" content="Image_1760104952910_edit_51856054479435.png">
+    <meta name="msapplication-TileColor" content="#2E7D32">
+    <meta name="theme-color" content="#2E7D32">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- 预加载关键资源 -->
-    <link rel="preload" href="QQ_1758452084238.png" as="image" type="image/png">
+    <link rel="preload" href="Image_1760104952910_edit_51856054479435.png" as="image" type="image/png">
     <link rel="preload" href="b3a5f2616624fa00fd65d52a299512a0.webp" as="image" type="image/webp">
     <link rel="preload" href="8e3bdb8706d6e01844e8a1412a40ecb7.webp" as="image" type="image/webp">
     <link rel="preload" href="facf8d1f-9403-4cdc-9126-13a997c7c3a7.webp" as="image" type="image/webp">
@@ -32,6 +41,10 @@
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.15);
             --border-radius: 12px;
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* 液态玻璃相关变量 */
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
         }
 
         * {
@@ -59,24 +72,27 @@
             padding: 0 20px;
         }
 
-        /* 高级导航栏 */
+        /* 液态玻璃导航栏 */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1.2rem 0;
+            background: var(--glass-bg); /* 半透明玻璃背景 */
+            backdrop-filter: blur(15px); /* 核心模糊效果 */
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border); /* 柔化边框 */
+            border-radius: var(--border-radius);
+            margin: 1rem;
+            padding: 1rem 0;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
             transition: var(--transition);
+            box-shadow: var(--glass-shadow);
         }
 
         nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(31, 38, 135, 0.2);
             padding: 0.8rem 0;
         }
 
@@ -91,7 +107,7 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--text-dark);
+            color: #1a1a2e;
             font-weight: 700;
             font-size: 1.4rem;
             transition: var(--transition);
@@ -123,7 +139,7 @@
         }
 
         .nav-links a {
-            color: var(--text-dark);
+            color: #1a1a2e;
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
@@ -159,7 +175,7 @@
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--text-dark);
+            color: #1a1a2e;
             cursor: pointer;
             padding: 0.5rem;
             border-radius: 8px;
@@ -171,7 +187,7 @@
             transform: scale(1.1);
         }
 
-        /* 高级英雄区域 */
+        /* 英雄区域（保持背景清晰，移除内容区液态玻璃） */
         .hero {
             min-height: 100vh;
             background: url('b3a5f2616624fa00fd65d52a299512a0.webp') center/cover fixed;
@@ -192,13 +208,14 @@
             background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
 
+        /* 学校名称区域：移除所有背景/边框/阴影，仅保留布局和动画 */
         .hero-content {
             text-align: center;
             color: white;
             position: relative;
             z-index: 2;
             max-width: 800px;
-            padding: 2rem;
+            padding: 2.5rem;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s ease-out 0.5s forwards;
@@ -383,7 +400,7 @@
             transform: translateY(0);
         }
 
-        /* 优化：信息卡片布局 */
+        /* 信息卡片布局 */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -404,7 +421,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* 修改：图片放在右边竖着放在中间，保持原比例并添加圆角 */
+        /* 图片容器改为液态玻璃半透明效果（已修复） */
         .about-images {
             display: flex;
             flex-direction: column;
@@ -417,7 +434,6 @@
         .about-img {
             border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
             width: 100%;
@@ -426,6 +442,14 @@
             opacity: 0;
             transform: translateX(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
+            /* 液态玻璃效果优化 */
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem; /* 加大内边距，突出玻璃背景 */
+            box-shadow: var(--glass-shadow);
+            background-clip: padding-box; /* 防止背景溢出边框 */
         }
 
         .section.animate .about-img {
@@ -444,10 +468,12 @@
             object-fit: contain;
             transition: var(--transition);
             border-radius: var(--border-radius);
+            opacity: 0.9; /* 图片半透明，透出玻璃背景 */
         }
 
         .about-img:hover img {
             transform: scale(1.05);
+            opacity: 0.95; /* hover 时图片略变清晰，增强交互 */
         }
 
         /* 服务区域 */
@@ -706,7 +732,7 @@
             color: #ccc;
         }
 
-        /* 返回顶部按钮 */
+        /* 返回顶部按钮（已修复点击功能） */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -760,12 +786,14 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(20px);
+                background: var(--glass-bg);
+                backdrop-filter: blur(15px);
                 flex-direction: column;
                 padding: 1rem;
-                box-shadow: var(--shadow);
+                box-shadow: var(--glass-shadow);
                 border-radius: 0 0 var(--border-radius) var(--border-radius);
+                border: 1px solid var(--glass-border);
+                margin: 0 1rem;
             }
 
             .nav-links.active {
@@ -841,7 +869,7 @@
         <div class="container">
             <div class="nav-container">
                 <a href="#home" class="logo">
-                    <img src="QQ_1758452084238.png" alt="重庆市第一二二中学校徽">
+                    <img src="Image_1760104952910_edit_51856054479435.png" alt="重庆市第一二二中学校徽">
                     <span>重庆市第一二二中学校</span>
                 </a>
                 <ul class="nav-links" id="navLinks">
@@ -943,7 +971,7 @@
                     <p>我们122中学要树什么样的人？我们要树把为学业而甘于奋斗、拼搏、吃苦作为一种无与伦比的高尚享受的人；我们要树干事有强烈的责任意识的人。</p>
                 </div>
                 <div class="about-images">
-                    <!-- 修改：图片放在右边竖着放在中间，保持原比例并添加圆角 -->
+                    <!-- 液态玻璃效果的图片容器 -->
                     <div class="about-img">
                         <img src="8e3bdb8706d6e01844e8a1412a40ecb7.webp" alt="学校主楼">
                     </div>
@@ -1051,7 +1079,7 @@
             <div class="footer-content">
                 <div class="footer-info">
                     <div class="footer-logo">
-                        <img src="QQ_1758452084238.png" alt="校徽">
+                        <img src="Image_1760104952910_edit_51856054479435.png" alt="校徽">
                         <div class="footer-logo-text">重庆市第一二二中学校</div>
                     </div>
                     <p>重庆市兼善中学龙凤校区 - 培育未来领袖的摇篮</p>
@@ -1180,6 +1208,16 @@
                 }
             });
         }
+
+        // 返回顶部功能（已添加）
+        const backToTopBtn = document.getElementById('backToTop');
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // 阻止默认跳转行为
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 平滑滚动到顶部
+            });
+        });
 
         // 初始化
         updateActiveNav();
